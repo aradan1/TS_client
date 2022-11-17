@@ -15,7 +15,7 @@ In source directory:
 
 The main components of this project are:
 
-#### src/App.vue
+### src/App.vue
 
 Contains the components of the application.
 
