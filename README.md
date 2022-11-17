@@ -1,16 +1,37 @@
-# Vue 3 + TypeScript + Vite
+# TS_client
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+### To run it:
 
-## Recommended IDE Setup
+In source directory:
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+  `cd TS_client`
 
-## Type Support For `.vue` Imports in TS
+  `npm install`
+  
+  `npm run dev`
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
+## Composition
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+The main components of this project are:
+
+#### src/App.vue
+
+Contains the components of the application.
+
+### src/components/DisplayTable.vue
+
+  - Shows the current content of the user database inside a table
+  - Delete a row
+  - Edit a username with the name specified in the text box above the 'table'.
+
+### src/components/RegistrationPost.vue
+
+Fields to create/register or log into an account.
+
+#
+
+- When a user logs in the TOKEN is stored in the localStorage.
+- None of this components enforce any restriction on data sent or read (this includes empty fields).
+- They don't use the error responses to notify the user that something went wrong or what it was.
+- The POST methods to "register" and "login" don't update the view of the table on their own (unlike the GET, DELETE or PUT methods) and refresh of the page is required (not implemented a 'force refresh' of the page because it's not the way to go).
