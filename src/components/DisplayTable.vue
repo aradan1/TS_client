@@ -4,7 +4,7 @@ import { ref, onMounted } from 'vue'
 const users = ref();
 const editName = ref<string>("");
 
-onMounted(() => {
+const loadTable = () => {
     fetch('http://localhost:1234/', {
       method: 'GET',
       headers: {
@@ -12,7 +12,11 @@ onMounted(() => {
         
       },})
         .then(response => response.json())
-        .then(data => users.value = data).then(() => console.log(users.value));
+        .then(data => users.value = data);
+}
+
+onMounted(() => {
+    loadTable();
 })
 
 const deleteUser = (index: Number) => {
@@ -24,7 +28,7 @@ const deleteUser = (index: Number) => {
         },
     })
     .then(response => response.json())
-    .then(data => console.log(data));
+    .then(() => loadTable());
 }
 
 const editUser = (index: Number) => {
@@ -40,7 +44,7 @@ const editUser = (index: Number) => {
         })
     })
     .then(response => response.json())
-    .then(data => console.log(data));
+    .then(() => loadTable());
 }
 
 </script>

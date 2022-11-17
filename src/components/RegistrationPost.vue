@@ -4,6 +4,7 @@ import { ref } from 'vue'
 const username = ref<string>("");
 const password = ref<string>("");
 
+
 const registerForm = () => {
     fetch('http://localhost:1234/signup/',{
     method:  'POST',
@@ -30,7 +31,6 @@ const logInForm = () => {
     })
     .then(response => response.json())
     .then(data => localStorage.setItem("user", data.token))
-    .then(() => console.log(`TOKEN: ${localStorage.getItem("user")}`))
 }
 </script>
 
