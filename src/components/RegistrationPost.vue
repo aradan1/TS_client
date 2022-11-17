@@ -4,7 +4,7 @@ import { ref } from 'vue'
 const username = ref<string>("");
 const password = ref<string>("");
 
-const submitForm = () => {
+const registerForm = () => {
     fetch('http://localhost:1234/signup/',{
     method:  'POST',
     headers: {
@@ -15,6 +15,22 @@ const submitForm = () => {
       'password': password.value
     })
   })
+}
+
+const logInForm = () => {
+    fetch('http://localhost:1234/login/',{
+        method:  'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+        'username': username.value,
+        'password': password.value
+        })
+    })
+    .then(response => response.json())
+    .then(data => localStorage.setItem("user", data.token))
+    .then(() => console.log(`TOKEN: ${localStorage.getItem("user")}`))
 }
 </script>
 
@@ -38,7 +54,7 @@ const submitForm = () => {
             <input type="text" placeholder="********" v-model="password"/>
         </div>
         <div>
-            <button @click="submitForm">Register</button>
+            <button @click="registerForm">Register</button> <button @click="logInForm">Log In</button>
         </div>
     </div>
 
